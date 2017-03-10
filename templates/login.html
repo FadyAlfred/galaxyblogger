@@ -1,0 +1,50 @@
+{%include 'head.html'%}
+    <nav class="navbar menu">
+        <ul>
+            <div style="max-width: 1000px;" class="container">
+            <div class="row">
+              <li ><a href="/">Home</a></li>
+              {% if logged==False %}
+                <li class="active"><a href="/login">Sign in</a></li>
+              {% else %}    
+                <li><a href="/logout">Sign out</a></li>
+              {%endif%}
+              {% if logged==False %}
+                <li><a href="/register">Sign up</a></li>
+              {%else%}
+                <li><a href="/post">Post</a></li>
+              {%endif%}
+              <li><a href="/profile">My Profile</a></li>
+              <li style="color: #fff; display: block;text-align: center; padding: 14px 16px;text-decoration: none;
+               float: right;">{{user}}</li>
+            </div>
+            </div>
+        </ul>
+        </nav>
+        <div style="max-width: 1000px;" class="container">
+        <form  method="post">
+            <div class="row vertical-offset-100 col-md-4 col-md-offset-4">
+            <div class="form-group">
+                <label class="row" for="inputEmail" style="padding-top: 20px">Username</label>
+                <div class="row">
+                    <input type="text" class="col-md-6 form-control" name="username" placeholder="Username" style=" width: 350px">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="row" for="inputPassword">Password</label>
+                <div class="row"> 
+                    <input type="password" class="col-md-6 form-control" name="password" placeholder="Password" style=" width: 350px">
+                </div>
+            </div>
+            <div  class=" row checkbox">
+                <button type="submit" style="background-color: #4C0000" class="col-md-2 btn btn-primary">Login</button>
+                <label style="padding-left: 150px" class="col-md-10" ><input name="remember" type="checkbox"> Remember me</label>
+            </div>
+            <div class="row">    
+                <h3 class="col-md-6" style="color: red">{{passwordWong}}</h3>
+            </div>
+            </div>
+        </form>
+    </div>
+    </body>
+</html>             

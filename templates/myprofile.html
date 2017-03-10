@@ -1,0 +1,70 @@
+{%include 'head.html'%}
+<nav class="navbar menu">
+		<ul>
+			<div style="max-width: 1000px;" class="container">
+			<div class="row">
+		  <li><a href="/">Home</a></li>
+		  {% if logged==False %}
+		  	<li><a href="/login">Sign in</a></li>
+		  {% else %}	
+		  	<li><a href="/logout">Sign out</a></li>
+		  {%endif%}
+		  {% if logged==False %}
+		  	<li><a href="/register">Sign up</a></li>
+		  {%else%}
+		  	<li><a href="/post">Post</a></li>
+		  {%endif%}
+		  <li class="active"><a href="/profile">My Profile</a></li>
+		  <li style="color: #fff; display: block;text-align: center; padding: 14px 16px;text-decoration: none;
+		   float: right;">{{user}}</li>
+		   </div>
+		   </div>
+		</ul>
+		</nav>
+		<div style="max-width: 1000px;" class="container">
+		{% for post in posts %}
+			<div  class="row">
+				<div style="float: right; text-align: right;" class="col-md-2">
+					{{post.username}}
+				</div>
+			</div>
+			<div class="row">
+				<div style=" float: right; text-align: right;" class="col-md-2">
+					{{post.created}}
+				</div>
+			</div>
+			<div style="overflow: auto; padding-bottom: 0px" class="head row">
+				<div  class="col-md-2 title">
+					{{post.title}}
+				</div>
+			</div>
+			<hr style="margin: 0px;">
+			<div class="body row">
+				<form method="post">
+					<div style="float: right; margin-top: 10px;" class="col-md-1">
+						<input type="image" style="float: right;" src="images/001-rubbish-bin.png" name="action" value="delete">
+						<input type="hidden" name="post" value={{post.key().id()}}>
+					</div>
+				</form>
+				<form method="post">
+					<div style="float: right; margin-top: 10px;" class="col-md-1">
+						<input type="image" style="float: right;" src="images/002-edit.png" name="action" value="edit">
+						<input type="hidden" name="post" value={{post.key().id()}}>
+					</div>
+				</form>
+				<div class="body col-md-10">
+					<pre >{{post.body|safe}}</pre>
+				</div>
+			</div>
+			<div class="row">
+				<div style="padding-left: 90px; float:right;" class="col-md-2">
+					<a href="/post/{{post.key().id()}}"><button class="btn" style="background-color: #fff; margin-bottom: 20px; width: 100px"><img src="images/001-comments.png"></button></a>
+				</div>
+			</div>
+			<hr style="border: none; height: 2px; color: #333;background-color: #333; margin-top: 0px;" class="row">
+		{%endfor%}
+		</div>
+		</div>
+	</div>			
+</body>
+</html>

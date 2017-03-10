@@ -1,0 +1,95 @@
+{%include 'head.html'%}
+<nav class="navbar menu">
+		<ul>
+			<div style="max-width: 1000px;" class="container">
+			<div class="row">
+		  <li><a href="/">Home</a></li>
+		  {% if logged==False %}
+		  	<li><a href="/login">Sign in</a></li>
+		  {% else %}	
+		  	<li><a href="/logout">Sign out</a></li>
+		  {%endif%}
+		  {% if logged==False %}
+		  	<li><a href="/register">Sign up</a></li>
+		  {%else%}
+		  	<li><a href="/post">Post</a></li>
+		  {%endif%}
+		  <li><a href="/profile">My Profile</a></li>
+		  <li style="color: #fff; display: block;text-align: center; padding: 14px 16px;text-decoration: none;
+		   float: right;">{{user}}</li>
+		   </div>
+		   </div>
+		</ul>
+		</nav>
+		<div style="max-width: 1000px;" class="container">
+		<div class="post">
+		<div  class="row">
+				<div style="float: right; text-align: right;" class="col-md-2">
+					{{post.username}}
+				</div>
+			</div>
+			<div class="row">
+				<div style=" float: right; text-align: right;" class="col-md-2">
+					{{post.created}}
+				</div>
+			</div>
+			<div style="padding-bottom: 0px" class="head row">
+				<div  class="col-md-4 title">
+					{{post.title}}
+				</div>
+			</div>
+			<hr style="border: none; height: 2px; color: #333;background-color: #333; margin-top: 0px;" class="row">
+			<div class="body row">
+				<pre  class="body col-md-10">{{post.body|safe}}</pre>
+			</div>
+		<hr>
+		<form method="post">
+			<div class="row">
+				<textarea name="text" class="form-control" value="" style="height: 100px; width: 100%;"></textarea>
+			</div>
+
+			<br>
+			<div class="row">
+				<button class="btn" style="background-color: #fff; margin-bottom: 20px; width: 100px"><img src="images/001-comments.png"></button>
+			</div>
+		</form>
+		{%for comment in comments%}
+		<div class="row">
+				<div class="col-md-9 title">
+				</div>
+				<div style="float: right; text-align: right;" class="col-md-2">
+					{{comment.user}}
+				</div>
+			</div>
+			<div class="head row">
+				<div style="float: left;" class="col-md-2 title">
+				</div>
+				<div style="float: right; text-align: right;" class="col-md-2">
+					{{comment.date}}
+				</div>
+			</div>
+			<hr style="border: none; height: 2px; color: #333;background-color: #333; margin-top: 0px;" class="row">
+			<div class="body row">
+				{%if commented.pop() == True%}
+					<form method="post">
+						<div style="float: right; margin-top: 10px;" class="col-md-1">
+							<input type="image" style="float: right;" src="images/001-rubbish-bin.png" name="action" value="delete">
+							<input type="hidden" name="comment" value={{comment.key().id()}}>
+						</div>
+					</form>
+					<form method="post">
+						<div style="float: right; margin-top: 10px;" class="col-md-1">
+							<input type="image" style="float: right;" src="images/002-edit.png" name="action" value="edit">
+							<input type="hidden" name="comment" value={{comment.key().id()}}>
+						</div>
+					</form>
+				{%endif%}	
+				<div class="body col-md-10">
+					<pre >{{comment.body|safe}}</pre>
+				</div>
+			</div>
+		{%endfor%}
+		</div>
+	</div>		
+</body>
+</html>

@@ -1,0 +1,118 @@
+{%include 'head.html'%}
+	<nav class="navbar menu">
+	<ul>
+		<div style="max-width: 1000px;" class="container">
+		<div class="row">
+	  <li class="active"><a href="/">Home</a></li>
+	  {% if logged==False %}
+	  	<li><a href="/login">Sign in</a></li>
+	  {% else %}	
+	  	<li><a href="/logout">Sign out</a></li>
+	  {%endif%}
+	  {% if logged==False %}
+	  	<li><a href="/register">Sign up</a></li>
+	  {%else%}
+	  	<li><a href="/post">Post</a></li>
+	  {%endif%}
+	  <li><a href="/profile">My Profile</a></li>
+	  <li style="color: #fff; display: block;text-align: center; padding: 14px 16px;text-decoration: none;
+	   float: right;">{{user}}</li>
+	   </div>
+	   </div>
+	</ul>
+	</nav>
+	<div style="max-width: 1000px;" class="container">
+	{% for post in posts %}
+		
+		<div  class="row">
+			<div style="float: right; text-align: right;" class="col-md-2">
+				{{post.username}}
+			</div>
+		</div>
+		<div class="row">
+			<div style=" float: right; text-align: right;" class="col-md-2">
+				{{post.created}}
+			</div>
+		</div>
+		<div style="padding-bottom: 0px" class="head row">
+			<div  class="col-md-4 title">
+				{{post.title}}
+			</div>
+		</div>
+		<hr style="margin: 0px;">
+		<div class="body row">
+			<div class="col-md-10">
+				<pre>{{post.body|safe}}</pre>
+			</div>
+		</div>
+		<form method="post"></form>
+		{%if logged==False%}
+			<div  class="row">
+				<div class="col-md-1" style="float: right;">
+					<pre style="text-align: center; margin-top:10px">{{comment.pop()}}</pre>
+				</div>
+				<div style="float: right" class="col-md-1">
+					<a href="/register"><button class="btn" style="background-color: #fff; margin-bottom: 20px; width: 80px"><img src="images/001-comments.png"></button></a>
+				</div>
+				<div class="col-md-1" style="float: right;">
+					<pre style="padding: 0px;margin-top:10px">{{like.pop()}}</pre>
+				</div>
+				<div style="float: right" class="col-md-1">
+					<form method="post">
+						<input type="image" src="images/002-like.png" name="action" value="notUser">
+						<input type="hidden" name="post" value={{post.key().id()}}>
+					</form>
+				</div>
+			</div>
+		{%else%}
+			<div class="row">
+				<div class="col-md-1" style="float: right;">
+					<pre style=" margin-top:10px">{{comment.pop()}}</pre>
+				</div>
+				<div style="float: right" class="col-md-1">
+					<a href="/post/{{post.key().id()}}"><button class="btn" style="background-color: #fff; margin-bottom: 20px; width: 80px"><img src="images/001-comments.png"></button></a>
+				</div>
+				<div class="col-md-1" style="float: right;">
+					<pre style="padding: 0px;margin-top:10px;">{{like.pop()}}</pre>
+				</div>
+				<div style="float: right" class="col-md-1">
+					{%if unlike.pop() == True%}
+						<form style="margin-top: 10px;" method="post">
+							<input type="image" src="images/thumb-down.png" name="action" value="like">
+							<input type="hidden" name="post" value={{post.key().id()}}>
+						</form>
+						
+					{%else%}
+						<form method="post">
+							<input type="image" src="images/002-like.png" name="action" value="like">
+							<input type="hidden" name="post" value={{post.key().id()}}>
+						</form>
+					{%endif%}
+				</div>
+			</div>
+		{%endif%}
+		<hr style="border: none; height: 2px; color: #333;background-color: #333; margin-top: 0px;" class="row">
+	{%endfor%}
+
+	{% for comment in all_comments  %}
+	<div class="user">
+		<div class="name">
+			{{comment.body}}
+		</div>
+		<div>
+			{{comment.username}}
+		</div>
+		<div>
+			{{comment.postID}}
+		</div>
+		<div>
+			{{comment.time}}
+		</div>
+		<hr>
+		{%endfor%}
+	</div>
+	</div>
+	</div>
+	</div>
+	</body>
+</html>

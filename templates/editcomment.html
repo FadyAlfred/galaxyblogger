@@ -1,0 +1,42 @@
+{%include 'head.html'%}
+<nav class="navbar menu">
+		<ul>
+			<div style="max-width: 1000px;" class="container">
+			<div class="row">
+		  <li><a href="/">Home</a></li>
+		  {% if logged==False %}
+		  	<li><a href="/login">Sign in</a></li>
+		  {% else %}	
+		  	<li><a href="/logout">Sign out</a></li>
+		  {%endif%}
+		  {% if logged==False %}
+		  	<li><a href="/register">Sign up</a></li>
+		  {%else%}
+		  	<li><a href="/post">Post</a></li>
+		  {%endif%}
+		  <li><a href="/profile">My Profile</a></li>
+		  <li style="color: #fff; display: block;text-align: center; padding: 14px 16px;text-decoration: none;
+		   float: right;">{{user}}</li>
+		   </div>
+		   </div>
+		</ul>
+		</nav>
+		<div style="max-width: 1000px;" class="container">
+		<form method="post">
+			<div class="row">
+				<div class="col-md-12">
+					<textarea name="text" class="form-control" value="" style="height: 100px; width: 100%;">{{body}}</textarea>
+				</div>
+			</div>
+
+			<br>
+			<div class="row">
+				<div style="float: right; margin-right:15px; " class="col-md-1">
+					<button class="btn" style="background-color: #fff; margin-bottom: 20px; width: 100px"><img src="images/001-comments.png"></button>
+				</div>
+			</div>
+		</form>
+		</div>
+	</div>		
+</body>
+</html>

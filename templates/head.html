@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome To Our Blog</title>
+	<link rel="stylesheet"  href="css/bootstrap.min.css">
+	<link rel="stylesheet"  href="css/main.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function () {
+
+    var menu = $('.menu');
+    var origOffsetY = menu.offset().top;
+
+    function scroll() {
+        if ($(window).scrollTop() >= origOffsetY) {
+            $('.menu').addClass('sticky');
+            $('.content').addClass('menu-padding');
+        } else {
+            $('.menu').removeClass('sticky');
+            $('.content').removeClass('menu-padding');
+        }
+
+
+    }
+
+    document.onscroll = scroll;
+
+	});
+	</script>
+
+</head>
+<body >
+	<div style="background-color:#d0d0d0; ">
+		<div style="max-width: 1000px;" class="container">
+		<div class="row">
+			<img class="img-responsive post" src="images/main.png" alt="Galaxy Blogger logo">
+		</div>
+		</div>
+		</div>

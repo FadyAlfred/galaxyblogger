@@ -1,0 +1,73 @@
+.title{
+	font-size: 22.5px;
+}
+
+h1 {
+    font-family: StarWars;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    margin-bottom: 15px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #000000;
+}
+.active {
+    background-color: #4C0000;
+}
+.poster {
+    width: 100%;
+}
+
+
+
+
+
+* {
+    font-family:arial;
+    margin:0;
+    padding:0;
+}
+
+.logo, .intro, .menu, .content {
+    padding:10px;
+}
+.menu {
+    padding: 0px;
+    margin: 0px;
+    line-height:30px;
+    letter-spacing:1px;
+    width:100%;
+    z-index: 5000;
+}
+.content {
+    margin-top:10px;
+}
+.menu-padding {
+    padding-top:40px;
+}
+.content p {
+    margin-bottom:20px;
+}
+.sticky {
+    position:fixed;
+    top:0;
+}
