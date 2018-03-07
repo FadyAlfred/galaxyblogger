@@ -10,7 +10,7 @@ If you want to run the project locally :
 
     1-Install Python 2.7
     2-Install Google App Engine Python SDK
-    3-Add the project to Google App Engine<
+    3-Add the project to Google App Engine
     4-Start the project from Google App engine
     
 ## Use
